@@ -1,0 +1,6 @@
+<%# /home/define1/Desktop/indrive/app/views/passengers/registrations/confirm_otp.html.erb %>
+<%= form_tag verify_otp_path(@passenger), method: :post do %>
+  <p>Enter the OTP sent to <%= @passenger.email %>:</p>
+  <%= text_field_tag :otp, nil, autocomplete: 'off' %>
+  <%= submit_tag 'Verify OTP' %>
+<% end %>
