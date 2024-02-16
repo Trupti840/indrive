@@ -36,7 +36,6 @@ class Passengers::RegistrationsController < Devise::RegistrationsController
 
   def verify_otp
     @passenger = Passenger.find(params[:id])
-    binding.pry
     if @passenger.verification_code == params[:otp]
       # OTP verified, continue with the registration process
       if @passenger.update(sign_up_params)
