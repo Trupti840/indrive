@@ -47,6 +47,17 @@ gem 'devise'
 # devise-two-factor
 gem 'devise-two-factor'
 
+# haml 
+gem 'haml-rails', '~> 2.0'
+
+# Gemfile
+gem 'select2-rails'
+
+# Gemfile
+gem 'jquery-rails'
+
+
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

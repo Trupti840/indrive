@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_15_124004) do
     t.datetime "date_time_when"
     t.integer "offer_fare"
     t.integer "passenger_id", null: false
-    t.integer "driver_id", null: false
+    t.integer "driver_id"
     t.string "confirmation_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -8,8 +8,12 @@ Rails.application.routes.draw do
     post '/passengers/verify_otp/:id', to: 'passengers/registrations#verify_otp', as: :verify_otp
   end
   resources :vehicles
-  resources :passengers
-  resources :rides
+  resources :passengers, only: [:update]
+  resources :rides do
+    get :locations, on: :collection
+  end
   resources :drivers
   root "rides#index"
+  get '/rides/locations', to: 'rides#locations'
+
 end

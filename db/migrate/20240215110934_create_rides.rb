@@ -6,7 +6,7 @@ class CreateRides < ActiveRecord::Migration[7.0]
       t.datetime :date_time_when
       t.integer :offer_fare , optional: true
       t.references :passenger, null: false, foreign_key: true
-      t.references :driver, null: false, foreign_key: true
+      t.references :driver, default: nil, null: true, foreign_key: true
       t.string :confirmation_code
 
       t.timestamps

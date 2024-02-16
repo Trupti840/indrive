@@ -1,0 +1,14 @@
+%h1 Rides#create
+%p Find me in app/views/rides/create.html.erb
+
+= form_for @ride do |f|
+  = f.label :location_from
+  = f.text_field :location_from, list: 'locations-datalist', class: 'location-autocomplete'  
+  = f.label :location_to
+  = f.text_field :location_to
+  = f.label :date_time_when
+  = f.datetime_field :date_time_when
+  = f.label :offer_fare
+  = f.text_field :offer_fare
+  = f.submit
+

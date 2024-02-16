@@ -1,0 +1,6 @@
+%h1 Rides#index
+%p Find me in app/views/rides/index.html.erb
+- if passenger_signed_in?
+  = button_to 'Sign Out', destroy_passenger_session_path, method: :delete ,data: { turbo_method: :delete }
+  = link_to 'New Ride', new_ride_path
+

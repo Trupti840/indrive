@@ -1,0 +1,13 @@
+%h1 Passengers#create
+%p Find me in app/views/passengers/create.html.erb
+= form_for @passenger do |f|
+  = f.label :first_name
+  = f.text_field :first_name
+  = f.label :last_name
+  = f.text_field :last_name
+  = f.label :email
+  = f.text_field :email
+  = f.label :contact_no
+  = f.text_field :contact_no
+  = f.submit
+
