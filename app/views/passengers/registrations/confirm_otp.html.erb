@@ -1,6 +1,68 @@
-<%# /home/define1/Desktop/indrive/app/views/passengers/registrations/confirm_otp.html.erb %>
-<%= form_tag verify_otp_path(@passenger), method: :post do %>
-  <p>Enter the OTP sent to <%= @passenger.email %>:</p>
-  <%= text_field_tag :otp, nil, autocomplete: 'off' %>
-  <%= submit_tag 'Verify OTP' %>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/user/css/bootstrap.min.css">
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/user/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css">
+
+  <title>OTP page</title>
+</head>
+
+<body class="main-bg">
+    <!-- otp Form -->
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-4 text-center">
+              <div class="row">
+                <div class="col-sm-12 mt-5 bgWhite">
+                  <div class="title">
+                    Verify OTP
+                  </div>
+                  
+                  <%= form_tag verify_otp_path(@passenger), method: :post do %>
+                      <p>Enter the OTP sent to <%= @passenger.email %>:</p>
+                    <%= text_field_tag :otp, nil, autocomplete: 'off', class:"otp form-control", oninput:'digitValidate(this)', onkeyup:'tabChange(1)', maxlength: 1 %>
+                    <%= text_field_tag :otp, nil, autocomplete: 'off', class:"otp form-control", oninput:'digitValidate(this)', onkeyup:'tabChange(2)', maxlength: 1 %>
+                    <%= text_field_tag :otp, nil, autocomplete: 'off', class:"otp form-control", oninput:'digitValidate(this)', onkeyup:'tabChange(3)', maxlength: 1 %>
+                    <%= text_field_tag :otp, nil, autocomplete: 'off', class:"otp form-control", oninput:'digitValidate(this)', onkeyup:'tabChange(4)', maxlength: 1 %>
+                  <% end %>
+                  <hr class="mt-4">
+                  <%= submit_tag 'Verify OTP', class:'btn btn-block mt-4 mb-4 customBtn'  %>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+
+<script src="/user/js/jquery.js"></script>
+<script src="/user/js/bootstrap.min.js"></script>
+<script src="/user/js/main.js"></script>
+<script>
+    let digitValidate = function(ele){
+  console.log(ele.value);
+  ele.value = ele.value.replace(/[^0-9]/g,'');
+}
+
+let tabChange = function(val){
+    let ele = document.querySelectorAll('input');
+    if(ele[val-1].value != ''){
+      ele[val].focus()
+    }else if(ele[val-1].value == ''){
+      ele[val-2].focus()
+    }   
+ }
+
+
+</script>
+</body>
+
+</html>

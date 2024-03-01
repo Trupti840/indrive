@@ -1,19 +1,91 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
+<!DOCTYPE html>
+<html lang="en">
 
-  <%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/user/css/bootstrap.min.css">
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/user/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css">
 
-  <%= f.label :contact_no %>
-  <%= f.text_field :contact_no %>
+  <title>Sign Up page</title>
+</head>
 
-  <!-- Other Devise fields if needed -->
+<body class="main-bg">
+    <!-- Login Form -->
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="card shadow">
+            <div class="card-title text-center border-bottom">
+              <a href="/" class="logo-img">
+                <img src="/user/images/InDrive_Logo.png" style="width: 150px;" class="pb-2 pt-2">
+              </a>
+            </div>
+            <div class="card-body">
+             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render 'devise/shared/error_messages', resource: resource %>
+                <div class="mb-4">
+                  <%= f.label :email, class: "form-label fw-bold" %>
+                  <%= f.email_field :email, autofocus: true, class: "form-control" %>
+                </div>
+                <div class="mb-4 demo">
+                  <%= f.label :contact_no, class: "form-label fw-bold" %>
+                  <%= f.text_field :contact_no, id: "phoneInput", placeholder: "Enter phone number", class: "form-control mobile-input"%>
+                </div>
+                <div class="mb-4">
+                  <%= f.label :password, class:"form-label" %>
+                  <%= f.password_field :password, autocomplete: 'off', class: "form-control", id: "password" %>
+                </div>
+                <div class="mb-4">
+                  <%= f.label :password_confirmation %>
+                   <%= f.password_field :password_confirmation, autocomplete: 'off', class: "form-control" %>
+                </div>
+                <div class="mb-4">
+                  <input type="checkbox" class="form-check-input" id="remember" />
+                  <label for="remember" class="form-label">Remember Me</label>
+                </div>
+                <div class="d-grid btn-submit">
+                    <%= f.submit 'Sign up', class: "btn text-light btn-color" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, autocomplete: 'off' %>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, autocomplete: 'off' %>
 
-  <%= f.submit 'Sign up' %>
-<% end %>
+<script src="/user/js/jquery.js"></script>
+<script src="/user/js/bootstrap.min.js"></script>
+<script src="/user/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"></script>
+<script>
+  const phoneInput = document.querySelector("#phoneInput");
+  
+    // Initialize intlTelInput
+    const iti = window.intlTelInput(phoneInput, {
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"
+    });
+  
+    // Set initial country based on the user's location
+    iti.promise.then(() => {
+      const countryCode = iti.getSelectedCountryData().iso2;
+      iti.setCountry(countryCode);
+    });
+  
+    // Listen for the country change event
+    phoneInput.addEventListener("countrychange", function() {
+      const countryCode = iti.getSelectedCountryData().iso2;
+      console.log("Selected country code:", countryCode);
+    });
+  </script>
+</body>
+
+</html>
