@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :vehicles
   resources :passengers, only: [:update]
+  get '/rides/ride_confirmation', to: 'rides#ride_confirmation'
   resources :rides do
     get :locations, on: :collection
   end

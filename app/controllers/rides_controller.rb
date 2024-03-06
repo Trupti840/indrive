@@ -13,7 +13,6 @@ class RidesController < ApplicationController
 
   def create
     @ride = Ride.new(ride_params)
-    # passenger = Passenger.find_by(confirmation_code: params[:ride][:confirmation_code])
     @ride.passenger_id = current_passenger.id
     if @ride.save
       #  available_driver = Driver.find_available_driver
@@ -22,6 +21,12 @@ class RidesController < ApplicationController
     else
       puts "#{@ride.errors.full_messages}"
       redirect_to new_ride_path
+    end
+  end
+
+  def ride_confirmation
+    respond_to do |format|
+      format.html { render 'ride_confirmation' } # Assuming 'ride_confirmation' is the name of your HTML template
     end
   end
 

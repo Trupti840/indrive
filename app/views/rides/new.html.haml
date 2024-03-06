@@ -1,14 +1,51 @@
 %h1 Rides#create
 %p Find me in app/views/rides/create.html.erb
 
-= form_for @ride do |f|
+= form_for @ride , id: 'ride-form' do |f|
   = f.label :location_from
-  = f.text_field :location_from, list: 'locations-datalist', class: 'location-autocomplete'  
+  = f.text_field :location_from, required: true, list: 'locations-datalist', class: 'location-autocomplete'  
   = f.label :location_to
-  = f.text_field :location_to
+  = f.text_field :location_to, required: true
   = f.label :date_time_when
-  = f.datetime_field :date_time_when
+  = f.datetime_field :date_time_when, required: true
   = f.label :offer_fare
   = f.text_field :offer_fare
-  = f.submit
+  - f.submit
+%button.btn.btn-primary{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+  Next
 
+#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Confirm Ride
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        \...
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button", id: "confirmButton"} Confirm
+
+
+
+:javascript
+  $(document).ready(function() {
+    // Handle Next button click
+    $('#nextButton').click(function() {
+      // Validate form here if needed
+      // For example, you can check if required fields are filled
+
+      // Open the modal
+      $('#exampleModal').modal('show');
+    });
+
+    // Handle Confirm button click
+    $('#confirmButton').click(function() {
+      // Submit the form
+      $('#new_ride').submit();
+
+      // Close the modal
+      $('#exampleModal').modal('hide');
+    });
+  });

@@ -3,4 +3,6 @@
 - if passenger_signed_in?
   = button_to 'Sign Out', destroy_passenger_session_path, method: :delete ,data: { turbo_method: :delete }
   = link_to 'New Ride', new_ride_path
-
+- else 
+  = link_to 'Sign In', new_passenger_session_path
+  = link_to 'Sign Up', new_passenger_registration_path
